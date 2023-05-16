@@ -30,15 +30,14 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
         loginTF.text = ""
         passwordTF.text = ""
     }
     
     @IBAction func usedLogInButton() {
         guard loginTF.text == user, passwordTF.text == password else {
-            showAlert(addMessage: "Error")
+            showAlert(addMessage: "Please, enter correct login and password")
             passwordTF.text = ""
             return
         }
@@ -46,22 +45,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showUserName() {
-        showAlert(addMessage: "Your User Name is 'User'")
+        showAlert(addMessage: "Your User Name is 'User' 😉 ")
     }
     
     @IBAction func showPassword() {
-        showAlert(addMessage: "Your Password is '1234'")
+        showAlert(addMessage: "Your Password is '1234' 🤫 ")
     }
 
-    
-}
-extension ViewController {
     private func showAlert(addMessage message: String) {
         let alert = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
 }
 
